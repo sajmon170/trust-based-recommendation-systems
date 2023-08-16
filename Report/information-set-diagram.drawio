@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" modified="2023-08-10T01:37:52.522Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="wF4nW-mf7yBBfzOSdCR4" version="21.5.0" type="device">
+  <diagram name="Page-1" id="k9TbJEIWRr-x0UluNEwA">
+    <mxGraphModel dx="1026" dy="625" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-2" target="JxwLPaUTYPf4F-2-hLdd-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="190" />
+              <mxPoint x="430" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF0000;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-2" target="JxwLPaUTYPf4F-2-hLdd-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="220" />
+              <mxPoint x="400" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-2" value="Intra-Item + Neighbours Information" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#FF0000;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="160" y="160" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-3" value="Intra-Item MoM" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-2">
+          <mxGeometry y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-6" target="JxwLPaUTYPf4F-2-hLdd-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="390" />
+              <mxPoint x="400" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-6" value="Trust Information" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#FF0000;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-7" value="Mode/Median/Mean of Neighbours" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-6">
+          <mxGeometry y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-8" value="Jaccard Weighted Model" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-6">
+          <mxGeometry y="60" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-14" value="Monte-Carlo Random Walk" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-6">
+          <mxGeometry y="90" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-9" value="Jaccard MoM" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-6">
+          <mxGeometry y="120" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-10" target="JxwLPaUTYPf4F-2-hLdd-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="470" />
+              <mxPoint x="430" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-10" value="Item Rating Information" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="410" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-11" value="Item-Jaccard MoM" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-10">
+          <mxGeometry y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-12" value="Item-Rating Difference MoM" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-10">
+          <mxGeometry y="60" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-13" value="Combined IJ &amp;amp; IR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-10">
+          <mxGeometry y="90" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-28" value="Weighted Item-Rating MoM" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="320" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-33" value="Jaccard Intra-Item MoM" style="text;strokeColor=#FF0000;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="460" y="240" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF0000;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-8" target="JxwLPaUTYPf4F-2-hLdd-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="315" />
+              <mxPoint x="400" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-37" value="Combined Jaccard &amp;amp; IR MoM" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="400" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JxwLPaUTYPf4F-2-hLdd-11" target="JxwLPaUTYPf4F-2-hLdd-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="440" />
+              <mxPoint x="400" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-42" value="Legend" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="90" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-43" value="Compatible with Cold-Start Users" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;strokeColor=#FF0000;spacing=3;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-42">
+          <mxGeometry x="10" y="30" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JxwLPaUTYPf4F-2-hLdd-44" value="Incompatible with Cold-Start Users" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;strokeColor=#000000;" vertex="1" parent="JxwLPaUTYPf4F-2-hLdd-42">
+          <mxGeometry x="10" y="80" width="180" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
