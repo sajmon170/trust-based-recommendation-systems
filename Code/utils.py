@@ -11,36 +11,35 @@ from scipy.sparse import load_npz, csr_matrix
 sys.setrecursionlimit(10**6)
 
 
-def evaluate(recommender, graph, ratings, rated_by, TEST_ITEM=386, TEST_PERCENTAGE=0.3):
+def evaluate(recommender, data, TEST_ITEM=386, TEST_PERCENTAGE=0.3):
     def _get_k(items, k):
         return random.sample(list(items), k=k)
 
-    test_points = _get_k(rated_by[TEST_ITEM], math.ceil(
-        len(rated_by[TEST_ITEM]) * TEST_PERCENTAGE))
-    test_graph = deepcopy(graph)
-    test_ratings = deepcopy(ratings)
-    test_rated_by = deepcopy(rated_by)
+    test_points = _get_k(data['rated_by'][TEST_ITEM], math.ceil(
+        len(data['rated_by'][TEST_ITEM]) * TEST_PERCENTAGE))
+    test_data = deepcopy(data)
 
     # Remove items from test set
     for tp in test_points:
-        del test_ratings[tp][TEST_ITEM]
-        test_rated_by[TEST_ITEM].remove(tp)
+        del test_data['ratings'][tp][TEST_ITEM]
+        test_data['rated_by'][TEST_ITEM].remove(tp)
 
     # Compute recommendations
     recommendations = recommender(
-        test_graph, test_ratings, test_rated_by, TEST_ITEM, test_points)
+        test_data, TEST_ITEM, test_points)
 
     # Compute accuracy metrics
     correct, incorrect, differenceSq, difference = 0, 0, 0, 0
 
     for tp in test_points:
-        if round(recommendations[tp]) == ratings[tp][TEST_ITEM]:
+        if round(recommendations[tp]) == data['ratings'][tp][TEST_ITEM]:
             correct += 1
         else:
             incorrect += 1
 
-        differenceSq += pow(recommendations[tp] - ratings[tp][TEST_ITEM], 2)
-        difference += abs(recommendations[tp] - ratings[tp][TEST_ITEM])
+        differenceSq += pow(recommendations[tp] -
+                            data['ratings'][tp][TEST_ITEM], 2)
+        difference += abs(recommendations[tp] - data['ratings'][tp][TEST_ITEM])
 
     acc, mse, diff = correct / \
         len(test_points), differenceSq / \

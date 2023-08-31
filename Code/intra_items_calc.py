@@ -20,7 +20,6 @@ def UC(i, j, rated_by):
 
 def r_(u, ratings):
     return sum(list(ratings[u].values())) / len(ratings[u])
-# Returns the Pearson correlation of items i and j
 
 
 def corr(i, j, ratings, rated_by):
@@ -46,6 +45,10 @@ def sim(i, j, ratings, rated_by):
     uc = UC(i, j, rated_by)
     s = (1/(1 + pow(math.e, -len(uc)/2))) * corr(i, j, ratings, rated_by)
     return s
+
+
+def jaccard_sim(i, j, _, rated_by):
+    return len(rated_by[i].intersection(rated_by[j])) / len(rated_by[i].union(rated_by[j]))
 
 # def sim_wrapper(args):
 #     return sim(*args)

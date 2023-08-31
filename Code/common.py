@@ -1,5 +1,5 @@
 from utils import *
-from intra_items_calc import sim
+from intra_items_calc import sim, jaccard_sim
 from collections import defaultdict
 from tqdm.notebook import tqdm
 
@@ -56,8 +56,11 @@ def load_dataset(dataset_name: str, n_items=10):
     items = ordered_items[:n_items]
 
     # Compute item similarities
-    item_sims = {i: {j: sim(i, j, ratings, rated_by)}
-                 for i in items for j in items}
+    item_sims = {i: {j: sim(i, j, ratings, rated_by) for j in items}
+                 for i in items}
+
+    jaccard_item_sims = {
+        i: {j: jaccard_sim(i, j, ratings, rated_by) for j in items} for i in items}
 
     # Compute item jaccards
     for node in tqdm(rated_by[items[0]], "Computing jaccard indexes"):
@@ -78,6 +81,7 @@ def load_dataset(dataset_name: str, n_items=10):
         "rated_by": rated_by_reduced,
         "items": items,
         "item_sims": item_sims,
+        "jaccard_item_sims": jaccard_item_sims,
         "item_jaccard": item_jaccard,
         "jaccard_idx": jaccard_idx
     }
