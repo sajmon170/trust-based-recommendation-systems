@@ -7,13 +7,15 @@ from copy import deepcopy
 from tqdm.notebook import tqdm
 import numpy as np
 from scipy.sparse import load_npz, csr_matrix
+import os
 
 sys.setrecursionlimit(10**6)
 
 
 def evaluate(recommender, data, TEST_ITEM=386, TEST_PERCENTAGE=0.3):
     def _get_k(items, k):
-        return random.sample(list(items), k=k)
+        # get k and remove adversaries from test items
+        return random.sample([i for i in items if i > 0], k=k)
 
     test_points = _get_k(data['rated_by'][TEST_ITEM], math.ceil(
         len(data['rated_by'][TEST_ITEM]) * TEST_PERCENTAGE))
@@ -208,32 +210,64 @@ def two_h_jaccard_index(graph, v1, v2):
     jaccard = len(s1.intersection(s2)) / len(s1.union(s2))
     return jaccard
 
-# def compute_matricies():
-#     item_diffs = np.zeros((len(TRUST_GRAPH), len(TRUST_GRAPH)), dtype='float16')
-#     item_jaccards = np.zeros((len(TRUST_GRAPH), len(TRUST_GRAPH)), dtype='float16')
-#     jaccards = np.zeros((len(TRUST_GRAPH), len(TRUST_GRAPH)), dtype='float16')
 
-#     # Similarities score
-#     for n in tqdm(TRUST_GRAPH):
-#         for o_n in TRUST_GRAPH:
-#             rated_n = set(RATINGS[n].keys())
-#             rated_o_n = set(RATINGS[o_n].keys())
-#             rated_common = rated_n.intersection(rated_o_n)
-#             union_size = len(rated_n.union(rated_o_n))
+def create_false_node_adversary_graph(name: str, data, n_accounts=1000):
+    new_data = deepcopy(data)
+    fake_accounts = [i for i in range(-2, -n_accounts-2, -1)]
 
-#             jaccards[n, o_n] = jaccard_index_neighbours(TRUST_GRAPH, n, o_n)
+    # Choose adversarial node to be the one with most incomming nodes
+    graph_nodes = sorted(
+        list(data['trust_graph'].items()), key=lambda x: len(x[1]), reverse=True)
 
-#             if len(rated_common) == 0:
-#                 item_diffs[n- 1, o_n -1] = 0
-#                 item_jaccards[n - 1, o_n -1] = 0
-#             else:
-#                 diff_sum = 0
-#                 for m in rated_common:
-#                     diff_sum += abs(RATINGS[n][m] - RATINGS[o_n][m])
-#                 avg_diff = diff_sum / len(rated_common) / 4  # Normalizing the average difference
-#                 jaccard_index = len(rated_common) / union_size
+    # Arbitrarily the 10th most popular node
+    adversary_node = graph_nodes[10]
 
-#                 item_diffs[n-1, o_n - 1] = np.float16(avg_diff)
-#                 item_jaccards[n-1, o_n -1] = np.float16(jaccard_index)
+    # Add adversary node to the graph and convert to -1 ID
+    new_data['trust_graph'][-1] = adversary_node[1]
+    new_data['ratings'][-1] = new_data['ratings'][adversary_node[0]]
+    del new_data['trust_graph'][adversary_node[0]]
+    del new_data['ratings'][adversary_node[0]]
 
-#     return item_diffs, item_jaccards
+    for node in new_data['trust_graph']:
+        if adversary_node[0] in new_data['trust_graph'][node]:
+            new_data['trust_graph'][node].remove(adversary_node[0])
+            new_data['trust_graph'][node].append(-1)
+
+    for item in new_data['rated_by']:
+        if adversary_node[0] in new_data['rated_by'][item]:
+            new_data['rated_by'][item].remove(adversary_node[0])
+            new_data['rated_by'][item].add(-1)
+
+    # Given data, takes the target item and adds fake positive ratings to the item
+    for item in new_data['rated_by']:
+        new_data['rated_by'][item].update(fake_accounts)
+
+    # Rate all items with 1
+    new_data['ratings'].update(
+        {i: {o_item: 1 for o_item in data['rated_by']} for i in fake_accounts})
+
+    # all fake accounts trust the adversary node
+    for i in fake_accounts:
+        new_data['trust_graph'][i] = [-1]
+
+    # write to new files
+    write_to_file(name, new_data)
+
+    return new_data
+
+
+def write_to_file(name: str, data):
+    # Create directories if they don't exist
+
+    if not os.path.exists(f'../datasets/{name}'):
+        os.makedirs(f'../datasets/{name}')
+
+    with open(f'../datasets/{name}/ratings_data.txt', 'w') as f:
+        for s in data['ratings']:
+            for m in data['ratings'][s]:
+                f.write(f'{s} {m} {data["ratings"][s][m]}\n')
+
+    with open(f'../datasets/{name}/trust_data.txt', 'w') as f:
+        for s in data['trust_graph']:
+            for m in data['trust_graph'][s]:
+                f.write(f'{s} {m} 1\n')

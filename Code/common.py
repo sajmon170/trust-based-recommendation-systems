@@ -91,6 +91,7 @@ def load_dataset(dataset_name: str, n_items=10):
 DATA = {
     "epinions": load_dataset("epinions"),
     "filmtrust": load_dataset("filmtrust"),
+    "epinions_adversarial": load_dataset("epinions_adversarial"),
 }
 
 # JACCARD_MATRIX = np.fromfile('jaccard.bin', dtype='float16').reshape(

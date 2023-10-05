@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{array}
+\usepackage{longtable}
+
+
+\begin{longtable}{|>{\hspace{0pt}}m{0.098\linewidth}|>{\hspace{0pt}}m{0.083\linewidth}|>{\hspace{0pt}}m{0.76\linewidth}|} 
+\hline
+Algorithm Name                          & \textbf{Information Type}      & \textbf{Description}                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \endfirsthead 
+\hline
+Mode, Median, Mean of Neighbours        & Trust                          & This class of algorithms simply takes the neighbours ratings for the item we are predicting for if they exist and aggregates them to produce a rating via either mode, median or mean.                                                                                                                                                                                                                                                                                                  \\ 
+\hline
+Jaccard Weighted Model                  & Trust                          & We initialize five rating buckets to 0. We iterate through the neighbours, if a neighbour has rated the current item we contribute the jaccard index between the current user and this neighbour to the corresponding rating bucket. We then perform a weighted average of these rating buckets. This is a simplified form of the Weighted Average algorithm.                                                                                                                           \\ 
+\hline
+Monte-Carlo Random Walk                 & Trust                          & A monte-carlo random walk. Starts at the node we are predicting for and traverses along trust edges. After each step the probability of returning a random rating increases                                                                                                                                                                                                                                                                                                             \\ 
+\hline
+Weighted Average                        & -                              & This is a method of producing rating with a given similarity metric. First we maintain 5 rating \`{}\`{}buckets''. For each user, we compute the similarity with every other user and contribute the similarity to the rating bucket corresponding to the other user. We then compute the weighted average of these rating buckets.                                                                                                                                                     \\ 
+\hline
+Jaccard WA                              & Trust                          & Uses Jaccard Index as the similarity metric for a weighted average computation as described above.                                                                                                                                                                                                                                                                                                                                                                                      \\ 
+\hline
+Item-Jaccard WA                         & Item-Rating                    & Uses Item-Jaccard index as the similarity metric for a weighted average computation. Item-Jaccard for two users is the intersection of the items they've rated divided by the union.                                                                                                                                                                                                                                                                                                    \\ 
+\hline
+Item-Rating Difference WA               & Item-Rating                    & Computes the average amount that two user's ratings differ from one another based on the intersection of the items they've rated. Then uses this similarity metric to perform WA.                                                                                                                                                                                                                                                                                                       \\ 
+\hline
+Intra-Item WA                           & Intra-Item                     & Computes the similarity of two items based on the intersection of users who have rated both items, divided by the union of those who have rated either. To produce a rating we iterate through a user's neighbours, and for each neighbour iterate through the items they've rated. We then compute the similarity between the item we are predicting for and this rated item and contribute its similarity to the bucket corresponding to what the rating provided by the neighbour.~  \\ 
+\hline
+JWIRD WA                                & Intra-Item  Item-Rating        & This combined both the intra-item information and the item information. To determine the similarity between two users, we take a similar approach to to the Item-Rating Difference but instead we consider every item \$u\_2\$ has rated. For each of these items we multiply the similarity of the item to the one we are predicting for and the difference in our ratings. This similarity metric for two users is then used in a WA context.                                         \\ 
+\hline
+Jaccard Item-Jaccard WA                 & Trust  Item-Rating             & This model combines the Jaccard and Item-Jaccard similarity metrics to produce a single similarity score for any pair of users. In the report we discovered the best way to combine these metrics is via equally weighted addition. Using this combined similarity metric we then use the WA algorithm to produce a rating.                                                                                                                                                             \\ 
+\hline
+Jaccard Item-Jaccard JII Combination WA & Trust  Item-Rating  Intra-Item & This model combines all of the information types. We start off with the similarity between our current user and another user \$u\_2\$. We then iterate through \$u\_2\$'s rated items and contribute the user similarity multiplied by the item similarity between the item we are predicting for and the item we are looking at to the rating buckets. We then use WA to produce a final rating.                                                                                       \\
+\hline
+\end{longtable}
+
+\end{document}
