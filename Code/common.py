@@ -92,6 +92,7 @@ DATA = {
     "epinions": load_dataset("epinions"),
     "filmtrust": load_dataset("filmtrust"),
     "epinions_adversarial": load_dataset("epinions_adversarial"),
+    'CiaoDVD': load_dataset('CiaoDVD'),
 }
 
 # JACCARD_MATRIX = np.fromfile('jaccard.bin', dtype='float16').reshape(
