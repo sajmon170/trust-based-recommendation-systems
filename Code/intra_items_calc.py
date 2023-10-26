@@ -1,14 +1,5 @@
 import math
-import numpy as np
-from collections import deque
-from copy import deepcopy
-import random
-# from tqdm import tqdm  # <-- Change this import
-import sys
 from common import *
-
-from multiprocessing import Pool
-from tqdm.contrib.concurrent import process_map
 
 # Returns the set of common users who have rated both movie i and j
 
